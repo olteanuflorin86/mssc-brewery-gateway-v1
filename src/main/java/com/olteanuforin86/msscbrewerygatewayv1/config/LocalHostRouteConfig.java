@@ -12,16 +12,16 @@ public class LocalHostRouteConfig {
 	public RouteLocator localHostRoutes(RouteLocatorBuilder builder) {
 		return builder.routes()
 				.route("beer-service", r -> r
-					.path("/api/v1/beer", "/api/v1/beer/*", "/api/v1/beerUpc/*")
+					.path("/api/v1/beer*", "/api/v1/beer/*", "/api/v1/beerUpc/*")
 					.uri("http://localhost:8080"))
 //					.id("beer-service"))
-//				.route("inventory-service", r -> r
-//					 .path("/api/v1/beer/*/inventory")
-//					 .uri("http://localhost:8082"))
 				.route("order-service", r -> r
 //					  .path("/api/v1/customers/*/orders", "/api/v1/customers/*/orders/*", "/api/v1/customers/*/orders/*/pickup")
-					  .path("/api/v1/customers/**")
-					  .uri("http://localhost:8081"))
+						.path("/api/v1/customers/**")
+						.uri("http://localhost:8081"))
+				.route("inventory-service", r -> r
+					 .path("/api/v1/beer/*/inventory")
+					 .uri("http://localhost:8082"))
 				.build();
 		
 	}
